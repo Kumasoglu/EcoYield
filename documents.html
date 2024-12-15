@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katılım Formu</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e9ecef;
+        color: #495057;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #343a40;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      input,
+      textarea,
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #f8f9fa;
+        box-sizing: border-box;
+      }
+      input:focus,
+      textarea:focus,
+      button:focus {
+        outline: none;
+        border-color: #80bdff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+      }
+      input[type="checkbox"] {
+        width: auto;
+      }
+      .file-upload {
+        margin-top: 5px;
+      }
+      .file-checklist {
+        margin: 15px 0;
+      }
+      .file-checklist label {
+        margin-left: 8px;
+        font-weight: 400;
+      }
+      button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      button:active {
+        background-color: #003f88;
+      }
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .checkbox-container input {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Company Sign-Up Form</h1>
+      <form id="signupForm">
+        <label for="companyName">Company Name</label>
+        <input
+          type="text"
+          id="companyName"
+          name="companyName"
+          placeholder="Enter your company name"
+          required
+        />
+
+        <label for="description">Short Description (max 300 words)</label>
+        <textarea
+          id="description"
+          name="description"
+          maxlength="300"
+          rows="5"
+          placeholder="Provide a short description of your company"
+          required
+        ></textarea>
+
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email address"
+          required
+        />
+
+        <label>Necessary Papers</label>
+        <div class="file-checklist">
+          <div class="checkbox-container">
+            <input type="checkbox" id="paper1" disabled />
+            <label for="paper1">Company Registration Document</label>
+          </div>
+          <input
+            type="file"
+            class="file-upload"
+            data-checkbox="paper1"
+            accept=".pdf,.doc,.docx"
+          />
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="paper2" disabled />
+            <label for="paper2">Tax Registration Certificate</label>
+          </div>
+          <input
+            type="file"
+            class="file-upload"
+            data-checkbox="paper2"
+            accept=".pdf,.doc,.docx"
+          />
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="paper3" disabled />
+            <label for="paper3">Business License</label>
+          </div>
+          <input
+            type="file"
+            class="file-upload"
+            data-checkbox="paper3"
+            accept=".pdf,.doc,.docx"
+          />
+        </div>
+
+        <label for="field">Field of Activity</label>
+        <input
+          type="text"
+          id="field"
+          name="field"
+          placeholder="Enter your field of activity"
+          required
+        />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      // Handle file uploads and checkbox updates
+      document.querySelectorAll(".file-upload").forEach((fileInput) => {
+        fileInput.addEventListener("change", function () {
+          const checkboxId = this.dataset.checkbox;
+          const checkbox = document.getElementById(checkboxId);
+          if (this.files.length > 0) {
+            checkbox.checked = true;
+          } else {
+            checkbox.checked = false;
+          }
+        });
+      });
+
+      // Handle form submission
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Form submitted successfully!");
+        });
+    </script>
+  </body>
+</html>
